@@ -9,5 +9,6 @@
   	<module>common-lib</module>
   	<module>query</module>
   	<module>datanode</module>
+  	<module>preprocessing</module>
   </modules>
 </project>
