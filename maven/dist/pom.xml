@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>com.bmwcmw.km</groupId>
 			<artifactId>common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>
