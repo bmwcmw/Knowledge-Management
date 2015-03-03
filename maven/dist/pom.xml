@@ -24,4 +24,11 @@
 	<modules>
 		<module>dist-datanode</module>
 	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>com.bmwcmw.km</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>

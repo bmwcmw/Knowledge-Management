@@ -6,7 +6,7 @@
 	<artifactId>client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -20,10 +20,17 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<modules>
 		<module>client-query</module>
 		<module>client-preproc</module>
 		<module>client-ui</module>
 	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>com.bmwcmw.km</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>
