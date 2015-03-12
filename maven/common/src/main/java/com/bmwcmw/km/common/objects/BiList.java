@@ -33,7 +33,7 @@ public class BiList<K, V> {
 	 * @return BiListPair
 	 */
 	public BiPair<K,V> get(int i){
-		BiPair<K,V> resp = new BiPair(list1.get(i), list2.get(i));
+		BiPair<K,V> resp = new BiPair<K,V>(list1.get(i), list2.get(i));
 		return resp;
 	}
 	
