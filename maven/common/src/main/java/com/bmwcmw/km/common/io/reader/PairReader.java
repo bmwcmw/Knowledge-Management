@@ -8,15 +8,18 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.StringTokenizer;
 
+import com.bmwcmw.km.common.objects.SOPair;
+import com.bmwcmw.km.common.objects.SOStringPair;
+
 /**
  * <p>
- * N3 triples reader
+ * SO pair reader
  * </p>
  * 
  * @author CMWT420
  * 
  */
-public class PairReader implements RDFN3BasicReader {
+public class PairReader implements ReaderImpl {
 
 	private String filePath = null;
 	private BufferedReader reader = null;
@@ -62,7 +65,7 @@ public class PairReader implements RDFN3BasicReader {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public RDFPair next() throws IOException, ParseException {
+	public SOPair next() throws IOException, ParseException {
 		String line;
 		while ((line = reader.readLine()) != null) {
 			++lineNumber;
@@ -77,7 +80,7 @@ public class PairReader implements RDFN3BasicReader {
 						throw new ParseException(filePath, lineNumber);
 					}
 					String object = itr.nextToken();
-					return new RDFPair(subj, object);
+					return new SOPair(subj, object);
 				}
 			}
 		}
@@ -96,7 +99,7 @@ public class PairReader implements RDFN3BasicReader {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public RDFPairStr nextStr() throws IOException, ParseException {
+	public SOStringPair nextStr() throws IOException, ParseException {
 		String line;
 		while ((line = reader.readLine()) != null) {
 			++lineNumber;
@@ -111,7 +114,7 @@ public class PairReader implements RDFN3BasicReader {
 						throw new ParseException(filePath, lineNumber);
 					}
 					String object = itr.nextToken();
-					return new RDFPairStr(subj, object);
+					return new SOStringPair(subj, object);
 				}
 			}
 		}

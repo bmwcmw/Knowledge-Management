@@ -49,7 +49,7 @@ public class InRamDBLoaderPOS implements DBLoaderImpl {
 					} else {
 						try {
 							PairReader reader = new PairReader(f.getAbsolutePath());
-							RDFPairStr pair = null;
+							SOStringPair pair = null;
 							InRamDBUtilsPOS dbu = new InRamDBUtilsPOS();
 							while ((pair = reader.nextStr()) != null) {
 								dbu.put(pair.getSubject(), 

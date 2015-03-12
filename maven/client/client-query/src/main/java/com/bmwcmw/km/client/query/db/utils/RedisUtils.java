@@ -73,7 +73,7 @@ public class RedisUtils implements DBImpl{
 			jedis.select(DBLOAD);
 			pipeline = jedis.pipelined();
 			PairReader reader = new PairReader(path);
-			RDFPairStr pair = null;
+			SOStringPair pair = null;
 			while ((pair = reader.nextStr()) != null) {
 				pipeline.set(pair.getSubject(), pair.getObject());
 			}

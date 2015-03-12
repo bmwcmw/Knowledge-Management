@@ -9,21 +9,21 @@ import java.text.ParseException;
 import java.util.StringTokenizer;
 
 import com.bmwcmw.km.common.io.IOUtils;
+import com.bmwcmw.km.common.objects.SPOTriple;
 
 /**
  * <p>
- * N3 triples reader
+ * SPO triple reader
  * </p>
  * 
  * @author CMWT420
  * 
  */
-public class TripleReader implements RDFN3BasicReader {
+public class TripleReader implements ReaderImpl {
 
 	private String filePath = null;
 	private BufferedReader reader = null;
 	private int lineNumber = 0;
-	private DataManager _dataManager = null;
 
 	private String _InvalidPath;
 	private PrintWriter out = null;
@@ -40,11 +40,10 @@ public class TripleReader implements RDFN3BasicReader {
 	 * @param invalidPath : specify invalid log's location
 	 * @throws FileNotFoundException
 	 */
-	public TripleReader(DataManager dataManager, String filePath, String invalidPath)
+	public TripleReader(String filePath, String invalidPath)
 			throws IOException {
 		this.filePath = filePath;
 		reader = new BufferedReader(new FileReader(filePath));
-		_dataManager = dataManager;
 		this._InvalidPath = invalidPath;
 	}
 	
@@ -60,7 +59,7 @@ public class TripleReader implements RDFN3BasicReader {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public RDFTriple next() throws IOException, ParseException {
+	public SPOTriple next() throws IOException, ParseException {
 		String line;
 		while ((line = reader.readLine()) != null) {
 			++lineNumber;
@@ -80,11 +79,7 @@ public class TripleReader implements RDFN3BasicReader {
 						throw new ParseException(filePath, lineNumber);
 					}
 					String object = itr.nextToken();
-					// If @prefix definition, add (verb, object) as (prefix,
-					// uri)
-					if (subj.compareTo("@prefix") == 0) {
-						_dataManager.addPrefix(verb, object);
-					} else {
+
 						/* if invalid node */
 						if ((!isValidNode(subj) || !isValidNode(object))) {
 							IOUtils.logLog("Thread "+ _dataManager.getThreadId()
@@ -106,8 +101,8 @@ public class TripleReader implements RDFN3BasicReader {
 								}
 							}
 						}
-						return new RDFTriple(subj, verb, object);
-					}
+						return new SPOTriple(subj, verb, object);
+					
 				}
 			}
 		}

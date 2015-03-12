@@ -5,12 +5,12 @@ import java.text.ParseException;
 
 
 /**
- * <p><i>interface</i></p>
+ * <p><i>Data reader interface</i></p>
  * 
  * @author CMWT420
  *
  */
-public interface RDFN3BasicReader {
+public interface ReaderImpl {
 	/**
 	 * Reads triples from a file, line by line, then parse the current line into a <i>Triple</i> object(S,P,O)
 	 * @throws IOException

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import com.bmwcmw.km.common.io.IOUtils;
+import com.bmwcmw.km.common.io.reader.PairReader;
+import com.bmwcmw.km.common.objects.SOStringPair;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
@@ -36,7 +38,7 @@ public class InRamDBUtils implements DBImpl{
 	public void loadIndexFromFile(String path) {
 		try {
 			PairReader reader = new PairReader(path);
-			RDFPairStr pair = null;
+			SOStringPair pair = null;
 			while ((pair = reader.nextStr()) != null) {
 				nodes.put(Long.valueOf(pair.getSubject()), pair.getObject());
 			}
