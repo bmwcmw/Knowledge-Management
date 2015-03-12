@@ -12,7 +12,8 @@ import java.text.ParseException;
  */
 public interface ReaderImpl {
 	/**
-	 * Reads triples from a file, line by line, then parse the current line into a <i>Triple</i> object(S,P,O)
+	 * Reads triples from a file, line by line, 
+	 * then parse the current line into a triple object(S,P,O)
 	 * @throws IOException
 	 * @throws ParseException
 	 */
