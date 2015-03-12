@@ -26,7 +26,7 @@ public class IOUtils {
 	private static final String WORKINGDIR = System.getProperty("user.dir");
 	private static String _logFileName;
 	private static boolean _loggingConsole = true;
-	private static boolean _loggingFile = true;
+	private static boolean _loggingFile = false;
 	
 	/**
 	 * Tells StandAloneIOTools which messages to output
