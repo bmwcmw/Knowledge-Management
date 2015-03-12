@@ -9,6 +9,8 @@ import redis.clients.jedis.Pipeline;
 
 import com.bmwcmw.km.common.constants.DBConstants;
 import com.bmwcmw.km.common.io.IOUtils;
+import com.bmwcmw.km.common.io.reader.PairReader;
+import com.bmwcmw.km.common.objects.SOStringPair;
 
 /**
  * <p>Redis is an open source, BSD licensed, advanced key-value store. It is often referred 
