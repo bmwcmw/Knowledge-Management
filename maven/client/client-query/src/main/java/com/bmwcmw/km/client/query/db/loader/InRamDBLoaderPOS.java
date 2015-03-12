@@ -10,6 +10,8 @@ import com.bmwcmw.km.client.query.db.utils.DBImpl;
 import com.bmwcmw.km.client.query.db.utils.InRamDBUtilsPOS;
 import com.bmwcmw.km.common.constants.AppConstants;
 import com.bmwcmw.km.common.io.IOUtils;
+import com.bmwcmw.km.common.io.reader.PairReader;
+import com.bmwcmw.km.common.objects.SOStringPair;
 
 /**
  * Only for the connection using POS files.
