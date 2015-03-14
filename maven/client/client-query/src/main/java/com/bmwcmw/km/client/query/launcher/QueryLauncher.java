@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 
 import com.bmwcmw.km.client.query.db.loader.DBLoaderImpl.MODE;
-import com.bmwcmw.km.client.query.db.loader.InRamDBLoaderPOS;
+import com.bmwcmw.km.client.query.db.loader.RamDBLoader;
 import com.bmwcmw.km.client.query.db.utils.DBImpl;
 import com.bmwcmw.km.client.query.query.executor.LocalBasicQueryExecutor;
 import com.bmwcmw.km.client.query.query.objects.ParsedQuery;
@@ -26,7 +26,7 @@ public class QueryLauncher {
 				+ File.separator + "_pos");
 		System.out.println("TO LOAD : " + exe.getLocalPath());
 		
-		InRamDBLoaderPOS loader = new InRamDBLoaderPOS();
+		RamDBLoader loader = new RamDBLoader();
 		HashMap<String, DBImpl> dbUnits = loader.getDBList(exe.getLocalPath(), MODE.POS);
 		exe.setDBUList(dbUnits);
 		
