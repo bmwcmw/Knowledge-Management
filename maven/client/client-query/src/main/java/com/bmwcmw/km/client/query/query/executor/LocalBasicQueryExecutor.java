@@ -13,7 +13,7 @@ import com.bmwcmw.km.client.query.query.objects.QueryPatternResult;
 import com.bmwcmw.km.client.query.query.objects.QueryResult;
 import com.bmwcmw.km.client.query.query.objects.StringTriple;
 import com.bmwcmw.km.client.query.query.objects.SubQueryPatternSet;
-import com.bmwcmw.km.common.constants.AppConstants;
+import com.bmwcmw.km.common.constants.IOConstants;
 import com.bmwcmw.km.common.io.IOUtils;
 
 /**
@@ -78,8 +78,8 @@ public class LocalBasicQueryExecutor implements ExecutorImpl, ExecutorImplLocal 
 		InRamDBUtilsPOS dbu;
 		
 		boolean isType = pred.equals(
-				AppConstants.rdfTypeHeader.substring(
-						0, AppConstants.rdfTypeHeader.length()-1)) 
+				IOConstants.rdfTypeHeader.substring(
+						0, IOConstants.rdfTypeHeader.length()-1)) 
 				|| pred.equals("a");
 		
 		/* Here P is never variable */
@@ -99,7 +99,7 @@ public class LocalBasicQueryExecutor implements ExecutorImpl, ExecutorImplLocal 
 				 * id appears in the set decoded from the subject's line */
 				if(isType) {
 					for(String fName : dbuList.keySet()){
-						if(fName.contains(AppConstants.rdfTypeHeader) 
+						if(fName.contains(IOConstants.rdfTypeHeader) 
 								&& fName.contains(pat.getO())) {
 							dbuName = fName;
 							break;
@@ -193,7 +193,7 @@ public class LocalBasicQueryExecutor implements ExecutorImpl, ExecutorImplLocal 
 				 * id appears in the set decoded from the subject's line */
 				if(isType) {
 					for(String fName : dbuList.keySet()){
-						if(fName.contains(AppConstants.rdfTypeHeader) 
+						if(fName.contains(IOConstants.rdfTypeHeader) 
 								&& fName.contains(pat.getO())) {
 							dbuName = fName;
 							break;
@@ -280,7 +280,7 @@ public class LocalBasicQueryExecutor implements ExecutorImpl, ExecutorImplLocal 
 					ArrayList<String> toAdd = new ArrayList<String>();
 					for(Entry<String, DBImpl> ent : dbuList.entrySet()){
 						String fName = ent.getKey();
-						if(fName.contains(AppConstants.rdfTypeHeader)) {
+						if(fName.contains(IOConstants.rdfTypeHeader)) {
 							ArrayList<String> arrSubject = 
 									((InRamDBUtilsPOS) ent.getValue()).getArr1();
 							for(String s : arrSubject){
@@ -368,7 +368,7 @@ public class LocalBasicQueryExecutor implements ExecutorImpl, ExecutorImplLocal 
 					ArrayList<String> toAddO = new ArrayList<String>();
 					for(Entry<String, DBImpl> ent : dbuList.entrySet()){
 						String fName = ent.getKey();
-						if(fName.contains(AppConstants.rdfTypeHeader)) {
+						if(fName.contains(IOConstants.rdfTypeHeader)) {
 							toAddS.addAll(
 									((InRamDBUtilsPOS) ent.getValue()).getArr1());
 							toAddO.addAll(

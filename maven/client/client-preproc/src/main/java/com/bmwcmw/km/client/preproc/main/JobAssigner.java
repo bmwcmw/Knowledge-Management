@@ -16,7 +16,7 @@ import com.bmwcmw.km.common.io.IOUtils;
  */
 public class JobAssigner {
 	
-	private static ServerConfig myConfig;
+	private static AppConfig myConfig;
 
 	/**
 	 * <p>Split all source files into specified number of groups, then for example 
@@ -30,7 +30,7 @@ public class JobAssigner {
 	 */
 	public static ArrayList<ArrayList<File>> assignJobs(ArrayList<File> allFiles
 			, boolean averageSize){
-		myConfig = ServerConfig.getInstance();
+		myConfig = AppConfig.getInstance();
 		ArrayList<ArrayList<File>> outputLists = new ArrayList<ArrayList<File>>();
 		if(!averageSize){ //Random plan only according to the number of files
 			//Distribute all input files to threads, as average as possible
@@ -126,7 +126,7 @@ public class JobAssigner {
 	 */
 	public static LinkedList<LinkedList<FilePair>> assignJobs(LinkedList<FilePair> allPairs, 
 			boolean averageSize){
-		myConfig = ServerConfig.getInstance();
+		myConfig = AppConfig.getInstance();
 		LinkedList<LinkedList<FilePair>> inputLists = new LinkedList<LinkedList<FilePair>>();
 		if(!averageSize){ //Random plan only according to the number of files
 			//Distribute all input files to threads, as average as possible

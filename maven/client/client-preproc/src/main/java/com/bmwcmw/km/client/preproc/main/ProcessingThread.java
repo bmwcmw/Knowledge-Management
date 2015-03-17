@@ -10,7 +10,6 @@ import com.bmwcmw.km.client.preproc.data.comparator.FilePair;
 import com.bmwcmw.km.client.preproc.data.compressor.utils.DBImpl2;
 import com.bmwcmw.km.client.preproc.data.distributor.light.DestInfo;
 import com.bmwcmw.km.client.preproc.data.manager.DataManager;
-import com.bmwcmw.km.common.constants.AppConstants;
 import com.bmwcmw.km.common.io.IOUtils;
 
 /**

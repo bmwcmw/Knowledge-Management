@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import com.bmwcmw.km.client.preproc.data.reader.PairReader;
-import com.bmwcmw.km.common.constants.AppConstants;
+import com.bmwcmw.km.common.constants.IOConstants;
 import com.bmwcmw.km.common.io.IOUtils;
 import com.bmwcmw.km.common.objects.SOStringPair;
 
@@ -44,7 +44,7 @@ public class JavaComparator2 {
 		SOStringPair temp2;
 		
 		int sortedCol = 0;//default is AppConstants.SOSortedExt
-		if(IOUtils.getExtension(f1.getName()) == AppConstants.OSSortedExt)
+		if(IOUtils.getExtension(f1.getName()) == IOConstants.OSSortedExt)
 			sortedCol = 1;
 		if (sortedCol==0) {
 			while (true) {

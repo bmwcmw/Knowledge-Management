@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 import com.bmwcmw.km.client.query.db.utils.DBImpl;
 import com.bmwcmw.km.client.query.db.utils.InRamDBUtilsPOS;
-import com.bmwcmw.km.common.constants.AppConstants;
+import com.bmwcmw.km.common.constants.IOConstants;
 import com.bmwcmw.km.common.io.IOUtils;
 import com.bmwcmw.km.common.io.reader.PairReader;
 import com.bmwcmw.km.common.objects.SOStringPair;
@@ -30,7 +30,7 @@ public class RamDBLoader implements DBLoaderImpl {
 			case POS : 
 				//ConcurrentHashMap Collections
 				for(File f : listOfFiles){
-					if(f.getName().startsWith(AppConstants.rdfTypeHeader)) {
+					if(f.getName().startsWith(IOConstants.rdfTypeHeader)) {
 						try {
 							PairReader reader = new PairReader(f.getAbsolutePath());
 							String str = null;

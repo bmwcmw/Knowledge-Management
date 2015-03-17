@@ -28,7 +28,8 @@ import com.bmwcmw.km.client.preproc.data.reader.PairReader;
 import com.bmwcmw.km.client.preproc.data.reader.TripleReader;
 import com.bmwcmw.km.client.preproc.external.FormatConverter;
 import com.bmwcmw.km.client.preproc.external.PerlPreComparator;
-import com.bmwcmw.km.common.constants.AppConstants;
+import com.bmwcmw.km.client.preproc.main.AppConstants;
+import com.bmwcmw.km.common.constants.IOConstants;
 import com.bmwcmw.km.common.io.IOUtils;
 import com.bmwcmw.km.common.objects.SOPair;
 import com.bmwcmw.km.common.objects.SOStringPair;
@@ -154,7 +155,7 @@ public class DataManager {
 				// POST : line = (Subject)
 				if ((inFileName.compareTo("a") == 0)
 						|| (inFileName.compareTo("rdf-type") == 0)) {
-					outFilePath = outputPath + File.separator + AppConstants.rdfTypeHeader
+					outFilePath = outputPath + File.separator + IOConstants.rdfTypeHeader
 						+ so.getObject().toString().replace(":", "-");
 					line = so.getSubject().toString();
 				}

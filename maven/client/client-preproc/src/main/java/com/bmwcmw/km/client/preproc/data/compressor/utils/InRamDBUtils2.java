@@ -14,8 +14,8 @@ import java.util.Map.Entry;
 import com.bmwcmw.km.client.preproc.data.compressor.MetaInfoArray;
 import com.bmwcmw.km.client.preproc.data.compressor.MetaInfoQuadruple;
 import com.bmwcmw.km.client.preproc.data.reader.PairReader;
-import com.bmwcmw.km.client.preproc.main.ServerConfig;
-import com.bmwcmw.km.common.constants.AppConstants;
+import com.bmwcmw.km.client.preproc.main.AppConfig;
+import com.bmwcmw.km.common.constants.IOConstants;
 import com.bmwcmw.km.common.io.IOUtils;
 
 public class InRamDBUtils2 extends DBImpl2 {
@@ -28,7 +28,7 @@ public class InRamDBUtils2 extends DBImpl2 {
 	private String outPath;
 
 	private HashMap<String, Integer> idNode;
-	private ServerConfig myConfig = ServerConfig.getInstance();
+	private AppConfig myConfig = AppConfig.getInstance();
 
 	/*
 	 * For every predicate, we store for matrix SO and OS (using SOArrayPair) a
@@ -47,28 +47,28 @@ public class InRamDBUtils2 extends DBImpl2 {
 		mainInputFile = new File(toProcessFilePath);
 		if(!mainInputFile.exists())
 			throw new Exception("Main input file error : must be " 
-					+ AppConstants.SOSortedExt + " or " + AppConstants.OSSortedExt 
+					+ IOConstants.SOSortedExt + " or " + IOConstants.OSSortedExt 
 					+ ", here is " + toProcessFilePath);
 
 		InputFileNameWithoutPred = IOUtils.filenameWithoutExt(new File(toProcessFilePath).getName());
 		String mainFileFolderPath = mainInputFile.getParent() + File.separator;
-		if (IOUtils.getExtension(toProcessFilePath).equals(AppConstants.SOSortedExt)) {
+		if (IOUtils.getExtension(toProcessFilePath).equals(IOConstants.SOSortedExt)) {
 				MyMode = ModeSO;
 				String auxFilePath = mainFileFolderPath + 
-						InputFileNameWithoutPred + AppConstants.OSSortedExt;
+						InputFileNameWithoutPred + IOConstants.OSSortedExt;
 				auxInputFile = new File(auxFilePath);
 				if(!auxInputFile.exists())
 					throw new Exception("Aux input file does not exist : " + auxFilePath);
-		} else if (IOUtils.getExtension(toProcessFilePath).equals(AppConstants.OSSortedExt)) {
+		} else if (IOUtils.getExtension(toProcessFilePath).equals(IOConstants.OSSortedExt)) {
 				MyMode = ModeOS;
 				String auxFilePath = mainFileFolderPath + 
-						InputFileNameWithoutPred + AppConstants.SOSortedExt;
+						InputFileNameWithoutPred + IOConstants.SOSortedExt;
 				auxInputFile = new File(auxFilePath);
 				if(!auxInputFile.exists())
 					throw new Exception("Aux input file does not exist : " + auxFilePath);
 		} else {
-				throw new Exception("Input file type error : must be " + AppConstants.SOSortedExt
-						+ " or " + AppConstants.OSSortedExt + ", here is " 
+				throw new Exception("Input file type error : must be " + IOConstants.SOSortedExt
+						+ " or " + IOConstants.OSSortedExt + ", here is " 
 						+ IOUtils.getExtension(toProcessFilePath));
 		}
 		outPath = outputPath + File.separator + InputFileNameWithoutPred + File.separator;
@@ -100,7 +100,7 @@ public class InRamDBUtils2 extends DBImpl2 {
 			int currentIndex = 0;
 			if (MyMode == 0) {
 				while ((tempS = reader.nextLine()) != null) {
-					pair = MyStringTokenizer.tokenize(AppConstants.delimiter, tempS);
+					pair = MyStringTokenizer.tokenize(IOConstants.delimiter, tempS);
 					if(!pair.get(ModeOS).equals(currentEntry)) {
 						idNode.put(pair.get(ModeOS), currentIndex);
 						currentEntry = pair.get(ModeOS);
@@ -109,7 +109,7 @@ public class InRamDBUtils2 extends DBImpl2 {
 				}
 			} else {
 				while ((tempS = reader.nextLine()) != null) {
-					pair = MyStringTokenizer.tokenize(AppConstants.delimiter, tempS);
+					pair = MyStringTokenizer.tokenize(IOConstants.delimiter, tempS);
 					if(!pair.get(ModeSO).equals(currentEntry)) {
 						idNode.put(pair.get(ModeSO), currentIndex);
 						currentEntry = pair.get(ModeSO);
@@ -147,13 +147,13 @@ public class InRamDBUtils2 extends DBImpl2 {
 			if(writeIndex)
 				outIndWriter = new BufferedWriter(new OutputStreamWriter(
 						new FileOutputStream(outPath + InputFileNameWithoutPred 
-								+ AppConstants.IndexSExt, true)));
+								+ IOConstants.IndexSExt, true)));
 			otherColumn = ModeOS;
 		} else {
 			if(writeIndex)
 				outIndWriter = new BufferedWriter(new OutputStreamWriter(
 						new FileOutputStream(outPath + InputFileNameWithoutPred 
-								+ AppConstants.IndexOExt, true)));
+								+ IOConstants.IndexOExt, true)));
 			otherColumn = ModeSO;
 		}
 		
@@ -163,7 +163,7 @@ public class InRamDBUtils2 extends DBImpl2 {
 		if(lineFromMain == null)
 			throw new IOException("File empty???");
 		
-		pair = MyStringTokenizer.tokenize(AppConstants.delimiter, lineFromMain);
+		pair = MyStringTokenizer.tokenize(IOConstants.delimiter, lineFromMain);
 		String currentEntry = pair.get(MyMode);
 		int currentIndex = 0;
 		if(writeIndex) {
@@ -174,11 +174,11 @@ public class InRamDBUtils2 extends DBImpl2 {
 		if(MyMode == ModeSO) {
 			outMatWriter = new BufferedWriter(new OutputStreamWriter(
 					new FileOutputStream(outPath + InputFileNameWithoutPred 
-							+ AppConstants.SOMatrixExt + "." + fileBlockCount, true)));
+							+ IOConstants.SOMatrixExt + "." + fileBlockCount, true)));
 		} else {
 			outMatWriter = new BufferedWriter(new OutputStreamWriter(
 					new FileOutputStream(outPath + InputFileNameWithoutPred 
-							+ AppConstants.OSMatrixExt + "." + fileBlockCount, true)));
+							+ IOConstants.OSMatrixExt + "." + fileBlockCount, true)));
 		}
 		// Begins from the first "main column": adds first element to metainfo list
 		metaList.getList().add(
@@ -197,7 +197,7 @@ public class InRamDBUtils2 extends DBImpl2 {
 		int termCount = 0;
 		// For each pair the main sorted predicate file
 		while ((lineFromMain = mainReader.nextLine()) != null) {
-			pair = MyStringTokenizer.tokenize(AppConstants.delimiter, lineFromMain);
+			pair = MyStringTokenizer.tokenize(IOConstants.delimiter, lineFromMain);
 			if (pair.get(MyMode).equals(currentEntry)) {
 				// The K,V store's get is time consuming
 				lineSet.add(idNode.get(pair.get(otherColumn)));
@@ -259,12 +259,12 @@ public class InRamDBUtils2 extends DBImpl2 {
 								if(MyMode == ModeSO) {
 									outMatWriter = new BufferedWriter(new OutputStreamWriter(
 											new FileOutputStream(outPath + InputFileNameWithoutPred 
-													+ AppConstants.SOMatrixExt + "." 
+													+ IOConstants.SOMatrixExt + "." 
 													+ fileBlockCount, true)));
 								} else {
 									outMatWriter = new BufferedWriter(new OutputStreamWriter(
 											new FileOutputStream(outPath + InputFileNameWithoutPred 
-													+ AppConstants.OSMatrixExt + "." 
+													+ IOConstants.OSMatrixExt + "." 
 													+ fileBlockCount, true)));
 								}
 								// Add meta information of new file
@@ -313,11 +313,11 @@ public class InRamDBUtils2 extends DBImpl2 {
 					if(MyMode == ModeSO) {
 						outMatWriter = new BufferedWriter(new OutputStreamWriter(
 								new FileOutputStream(outPath + InputFileNameWithoutPred 
-										+ AppConstants.SOMatrixExt + "." + fileBlockCount, true)));
+										+ IOConstants.SOMatrixExt + "." + fileBlockCount, true)));
 					} else {
 						outMatWriter = new BufferedWriter(new OutputStreamWriter(
 								new FileOutputStream(outPath + InputFileNameWithoutPred 
-										+ AppConstants.OSMatrixExt + "." + fileBlockCount, true)));
+										+ IOConstants.OSMatrixExt + "." + fileBlockCount, true)));
 					}
 					// Add meta information of new file
 					metaList.getList().add(
@@ -357,10 +357,10 @@ public class InRamDBUtils2 extends DBImpl2 {
 		String outAuxFileName;
 		if(MyMode == ModeSO) {
 			outAuxFileName = outPath + File.separator 
-					+ InputFileNameWithoutPred + AppConstants.IndexOExt;
+					+ InputFileNameWithoutPred + IOConstants.IndexOExt;
 		} else {
 			outAuxFileName = outPath + File.separator 
-					+ InputFileNameWithoutPred + AppConstants.IndexSExt;
+					+ InputFileNameWithoutPred + IOConstants.IndexSExt;
 		}
 		BufferedWriter fInd  = new BufferedWriter(new OutputStreamWriter(
 				new FileOutputStream(outAuxFileName, true), "UTF-8"));
@@ -385,10 +385,10 @@ public class InRamDBUtils2 extends DBImpl2 {
 		String outMetaFileName;
 		if(MyMode == ModeSO) {
 			outMetaFileName = outPath + File.separator 
-					+ InputFileNameWithoutPred + AppConstants.MetadataSExt;
+					+ InputFileNameWithoutPred + IOConstants.MetadataSExt;
 		} else {
 			outMetaFileName = outPath + File.separator 
-					+ InputFileNameWithoutPred + AppConstants.MetadataOExt;
+					+ InputFileNameWithoutPred + IOConstants.MetadataOExt;
 		}
 		BufferedWriter fMeta = new BufferedWriter(new OutputStreamWriter(
 				new FileOutputStream(outMetaFileName, true), "UTF-8"));

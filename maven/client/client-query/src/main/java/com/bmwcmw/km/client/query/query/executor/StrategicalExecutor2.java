@@ -17,7 +17,7 @@ import com.bmwcmw.km.client.query.query.objects.QueryResult;
 import com.bmwcmw.km.client.query.query.objects.StringTriple;
 import com.bmwcmw.km.client.query.query.objects.SubQueryPatternSet;
 import com.bmwcmw.km.client.query.query.rewriter.SimpleQueryTranslator;
-import com.bmwcmw.km.common.constants.AppConstants;
+import com.bmwcmw.km.common.constants.IOConstants;
 import com.bmwcmw.km.common.io.IOUtils;
 
 /**
@@ -78,9 +78,9 @@ public class StrategicalExecutor2 implements ExecutorImpl {
 		
 		IOUtils.logLog("Predicate term : "+pred);
 		/* Paths of specified predicate */
-		String indPath = localPath + File.separator + pred + AppConstants.IndexExt;
-		String matSOPath = localPath + File.separator + pred + AppConstants.SOMatrixExt;
-		String matOSPath = localPath + File.separator + pred + AppConstants.OSMatrixExt;
+		String indPath = localPath + File.separator + pred + IOConstants.IndexExt;
+		String matSOPath = localPath + File.separator + pred + IOConstants.SOMatrixExt;
+		String matOSPath = localPath + File.separator + pred + IOConstants.OSMatrixExt;
 		
 		dbu.loadIndexFromFile(indPath);
 		LongTriple intPat = SimpleQueryTranslator.toCompressed(dbu, pat);

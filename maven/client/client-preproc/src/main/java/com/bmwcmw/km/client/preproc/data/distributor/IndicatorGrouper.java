@@ -15,8 +15,8 @@ import java.util.TreeMap;
 
 import org.json.simple.parser.ParseException;
 
+import com.bmwcmw.km.client.preproc.main.AppConstants;
 import com.bmwcmw.km.client.preproc.main.JobAssigner;
-import com.bmwcmw.km.common.constants.AppConstants;
 import com.bmwcmw.km.common.io.IOUtils;
 import com.bmwcmw.km.common.objects.SOLongPair;
 
