@@ -5,7 +5,7 @@ import java.util.List;
 
 
 @SuppressWarnings("unused")
-public class JavaTest {
+public class LightVersionTest {
 
     public static final String myFolder = System.getProperty("user.dir");
 
