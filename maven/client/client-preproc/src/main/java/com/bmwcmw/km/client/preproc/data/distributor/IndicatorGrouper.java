@@ -311,25 +311,25 @@ public class IndicatorGrouper {
 		}
 	}
 	
-//	/**
-//	 * Return first N entries of a sorted map
-//	 * @param max : N
-//	 * @param source : source map
-//	 * @return A sorted map
-//	 */
-//	private static TreeMap<String, PairLong> getFirstEntries(int max, 
-//			TreeMap<String, PairLong> source) {
-//		int count = 0;
-//		TreeMap<String, PairLong> target = new TreeMap<String, PairLong>();
-//		for (Entry<String, PairLong> entry : source.entrySet()) {
-//			if (count >= max)
-//				break;
-//
-//			target.put(entry.getKey(), entry.getValue());
-//			count++;
-//		}
-//		return target;
-//	}
+	/**
+	 * Return first N entries of a sorted map
+	 * @param max : N
+	 * @param source : source map
+	 * @return A sorted map
+	 */
+	private static TreeMap<String, SOLongPair> getFirstEntries(int max, 
+			TreeMap<String, SOLongPair> source) {
+		int count = 0;
+		TreeMap<String, SOLongPair> target = new TreeMap<String, SOLongPair>();
+		for (Entry<String, SOLongPair> entry : source.entrySet()) {
+			if (count >= max)
+				break;
+
+			target.put(entry.getKey(), entry.getValue());
+			count++;
+		}
+		return target;
+	}
 	
 	/**
 	 * Return from M to N entries of a sorted map
